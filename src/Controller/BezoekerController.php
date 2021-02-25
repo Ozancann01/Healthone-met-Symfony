@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BezoekerController extends AbstractController
 {
+    
+    //zorgt er voor dat je naar home pagina kan gaan
 
     /**
      * @Route("/",name="home")"
