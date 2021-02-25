@@ -54,6 +54,8 @@ class ArtsController extends AbstractController
         ]);
 
     }
+    
+    //zorgt ervoor dat je recepten kan editen
 
     /**
      * @Route("/recepten/rp/{id}/edit",name="recept_edit")
@@ -79,6 +81,8 @@ class ArtsController extends AbstractController
         ]);
 
     }
+    
+    //zorgt ervoor dat je recepten kan delete
 
     /**
      * @Route("/recepten/rp/{id}/delete",name="recept_delete")
