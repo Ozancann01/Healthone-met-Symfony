@@ -16,6 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MedewerkerController extends AbstractController
 {
+    
+    
+    //crud patienten
+    //patienten worden uit datebase gehaald en wordt door gestuurd naar patient.html.twig met de naam patienten
 
     /**
      * @Route("/patienten" ,name="patienten")
@@ -28,6 +32,8 @@ class MedewerkerController extends AbstractController
 
     }
 
+    
+    
 
     /**
      * @Route("/patienten/pt/new",name="patient_new")
