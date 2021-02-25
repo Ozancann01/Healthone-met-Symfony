@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block content_body %}
+
+    <h1>Er zijn {{ patienten|length  }} patienten</h1>
+
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Naam</th>
+            <th scope="col">Adres</th>
+            <th scope="col">Postcode</th>
+            <th scope="col">Woonplaats</th>
+            {% if is_granted('ROLE_Medewerker') %}
+                <th scope="col">Bewerken</th>
+                <th scope="col">Verwijderen</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for patient in patienten%}
+            <tr>
+                <td>{{ patient.naam }}</td>
+                <td>{{ patient.adres }}</td>
+                <td>{{ patient.postcode }}</td>
+                <td>{{patient.woonplaats}}</td>
+                {% if is_granted('ROLE_Medewerker') %}
+                <td>
+                    <a href="{{ path("patient_edit",{'id':patient.id}) }}">
+                        <i class="fas fa-edit" style="color: green"></i>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{{ path("patient_delete",{'id':patient.id}) }}">
+                        <span class="fas fa-minus " style="color: red"></span>
+                    </a>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        <tr>
+            {% if is_granted('ROLE_Medewerker') %}
+           <td>
+                <a href="{{ path("patient_new") }}" >
+                    <i class="fas fa-plus" style="color:blue"></i>
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

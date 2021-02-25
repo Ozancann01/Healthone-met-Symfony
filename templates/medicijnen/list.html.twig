@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content_body %}
+
+    <h1>Er zijn {{ medicijnen|length  }} Medicijnen</h1>
+
+
+    <table class="table" >
+    <thead>
+    <tr>
+        <th scope="col">Naam</th>
+        <th scope="col">werking</th>
+        <th scope="col">Bijwerkingen</th>
+        <th scope="col">Prijs</th>
+        <th scope="col">Verzekerd</th>
+        {% if is_granted('ROLE_Medewerker') %}
+        <th scope="col">Bewerken</th>
+        <th scope="col">Verwijderen</th>
+        {% endif %}>
+    </tr>
+    </thead>
+        <tbody>
+{% for medicijn in medicijnen %}
+             <tr>
+                <td>{{ medicijn.Naam }}</td>
+                 <td>{{ medicijn.Werking }}</td>
+                <td>{{ medicijn.Bijwerkingen }}</td>
+                <td>€{{ medicijn.Prijs }}</td>
+                 {% if(medicijn.Verzekerd==1) %}
+                     <td>Verzekerd</td>
+                 {% else %}
+                     <td>Nietverzekerd</td>
+                 {% endif %}
+                 {% if is_granted('ROLE_Medewerker') %}
+                 <td>
+                     <a href="{{ path("medicijnen_edit",{'id':medicijn.id}) }}">
+                         <i class="fas fa-edit" style="color: green"></i>
+                     </a>
+                 </td>
+                 <td>
+                     <a href="{{ path("medicijnen_delete",{'id':medicijn.id}) }}">
+                         <span class="fas fa-minus " style="color: red"></span>
+                     </a>
+                 </td>
+                 {% endif %}
+            </tr>
+
+{% endfor %}
+            <tr>
+                {% if is_granted('ROLE_Medewerker') %}
+                <td>
+                    <a href="{{ path("medicijnen_new") }}" >
+                        <i class="fas fa-plus" style="color:blue"></i>
+                    </a>
+                </td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

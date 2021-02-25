@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content_body %}
+    <div class="container">
+        <h1>Edit the Recept!</h1>
+
+        {{ form_start(receptenForm) }}
+        {{ form_row(receptenForm.patienten) }}
+        {{ form_row(receptenForm.datum) }}
+        {{ form_row(receptenForm.periode) }}
+        {{ form_row(receptenForm.medicijnen) }}
+
+        <button type="submit" class="btn btn-primary">Update</button>
+
+        {{ form_end(receptenForm) }}
+
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_body %}
+
+
+    <h1>Er zijn {{ recepten|length  }} recepten</h1>
+
+    <table class="table" >
+        <thead>
+            <tr>
+                <th scope="col">Patient</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Periode</th>
+                <th scope="col">Prijs</th>
+                <th scope="col">Verzekerd</th>
+                <th scope="col">Medicijnen</th>
+                {% if is_granted('ROLE_Arts') %}
+                <th scope="col">Bewerken</th>
+                <th scope="col">Verwijderen</th>
+                {% endif %}
+            </tr>
+        </thead>
+    <tbody>
+    {% for recept in recepten%}
+
+
+        <tr>
+            <td>{{ recept.patienten.naam }}</td>
+            <td>{{ recept.datum|date("m/d/y")}}</td>
+            <td>{{ recept.periode }}</td>
+            <td>€{{ recept.medicijnen.Prijs }}</td>
+            {% if(recept.medicijnen.Verzekerd==1) %}
+                <td>Verzekerd</td>
+            {% else %}
+                <td>Nietverzekerd</td>
+            {% endif %}
+            <td>{{ recept.medicijnen.Naam }}</td>
+            {% if is_granted('ROLE_Arts') %}
+             <td>
+                <a href="{{ path("recept_edit",{'id':recept.id}) }}">
+                    <i class="fas fa-edit" style="color: green"></i>
+                </a>
+            </td>
+
+            <td>
+                <a href="{{ path("recept_delete",{'id':recept.id}) }}">
+                    <span class="fas fa-minus " style="color: red"></span>
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+        <tr>
+            {% if is_granted('ROLE_Arts') %}
+            <td>
+                <a href="{{ path("recepten_new") }}" >
+                    <i class="fas fa-plus" style="color:blue"></i>
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

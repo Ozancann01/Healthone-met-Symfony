@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block content_body %}
+    <div class="container">
+        {{ form_start(medicijnenForm) }}
+        {{ form_widget(medicijnenForm) }}
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        {{ form_end(medicijnenForm) }}
+
+    </div>
+
+
+{% endblock %}

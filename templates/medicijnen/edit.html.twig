@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block content_body %}
+    <div class="container">
+        <h1>Edit the Medicijn!</h1>
+
+        {{ form_start(medicijnenForm) }}
+        {{ form_row(medicijnenForm.Naam) }}
+        {{ form_row(medicijnenForm.werking) }}
+        {{ form_row(medicijnenForm.Bijwerkingen) }}
+        {{ form_row(medicijnenForm.Prijs) }}
+        {{ form_row(medicijnenForm.Verzekerd) }}
+
+        <button type="submit" class="btn btn-primary">Update</button>
+
+        {{ form_end(medicijnenForm) }}
+
+    </div>
+
+
+
+{% endblock %}

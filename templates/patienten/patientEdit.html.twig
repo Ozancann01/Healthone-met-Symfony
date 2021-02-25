@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content_body %}
+
+    <div class="container">
+        <h1>Edit the Patient!</h1>
+
+        {{ form_start(patientenForm) }}
+        {{ form_row(patientenForm.naam) }}
+        {{ form_row(patientenForm.adres) }}
+        {{ form_row(patientenForm.postcode) }}
+        {{ form_row(patientenForm.woonplaats) }}
+
+        <button type="submit" class="btn btn-primary">Update</button>
+
+        {{ form_end(patientenForm) }}
+
+    </div>
+
+{% endblock %}
